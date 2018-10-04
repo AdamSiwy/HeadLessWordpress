@@ -1,0 +1,22 @@
+{
+  "name": "eslint",
+  "version": "1.0.0",
+  "description": "linting",
+  "main": "es/headless_api_fetch.js",
+  "dependencies": {
+    "eslint": "^5.6.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "-"
+  },
+  "keywords": [
+    "-"
+  ],
+  "author": "AS",
+  "license": "UNLICENSED"
+}
