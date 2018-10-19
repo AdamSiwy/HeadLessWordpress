@@ -21,7 +21,7 @@ a {
 
 .card {
     max-width: 30%;
-    display: block;
+    display: table-cell;
     float: left;
     margin: 7px;
     background: white;
@@ -34,8 +34,9 @@ a {
     .navbar {
         grid-area: navigation;
         background-color: #ffffff;
-        display: flex;
-        flex-direction: column;
+        display: block;
+        flex-wrap: wrap;
+        text-align: center;
     }
 
     .makecontent {
@@ -87,8 +88,8 @@ a {
 
 @media (max-width:639px) {
     .nav-link {
-        display: inline-flex;
-        padding: 0;
+        display: block;
+        padding: 0.5rem 1rem;
         color: #404040;
         text-decoration: none;
         font-weight: 700;
@@ -98,12 +99,11 @@ a {
 
 .nav-link {
     display: block;
-    padding: 15px 1rem 0.5rem;
-    color: rgb(240, 152, 25);
+    padding: 0.5rem 1rem;
+    color: #404040;
+    text-decoration: none;
     font-weight: 700;
     text-shadow: 1px;
-    margin: 0;
-    text-transform: uppercase;
 }
 
 footer {
@@ -171,20 +171,15 @@ footer {
 
 @media (max-width:639px) {
     .nav-item {
+        display: block;
         color: rgb(240, 152, 25);
         clear: both;
-        border-right: 0px solid;
     }
 }
 
 .nav-item {
     display: inline-block;
     color: rgb(240, 152, 25);
-    text-align: center;
-
-    /* margin-right: 1em */
-    /* border-right: 1px solid #d0a50f */
-    /* padding-right: 1em */
 }
 
 .socialicons {
@@ -248,8 +243,7 @@ footer {
 .contentteaser {
     grid: content;
     grid-area: content;
-    display: flex;
-    flex-wrap: wrap;
+    display: table;
 }
 
 @media (max-width:639px) {
@@ -263,43 +257,44 @@ footer {
     }
 }
 
-/* #navbarToggler4 {
+#navbarToggler4 {
     color: rgb(240, 152, 25);
     text-transform: uppercase;
     text-decoration: none;
     font-size: 15px;
     margin-right: 0px;
     clear: both;
-} */
+}
+
 @media (max-width:639px) {
     .navicon {
         max-height: 30px;
-        max-width: 20%;
+        max-width: 25%;
     }
 }
 
 .navicon {
-    max-height: 55px;
+    max-height: 60px;
 }
 
 .navicon {
+}
+
+.nav-link {
+    text-transform: uppercase;
+    color: rgb(240, 152, 25);
 }
 
 @media (max-width:639px) {
     .navlogo {
         clear: both;
         display: block;
-        padding: 6px;
-
-        /* margin-left: 0px */
     }
 }
 
 .navlogo {
     float: left;
-
-    /* margin-left: 35px */
-    padding: 1em;
+    margin-left: 35px;
 }
 
 .card-text {

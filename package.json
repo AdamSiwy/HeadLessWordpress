@@ -1,22 +1,19 @@
 {
-  "name": "eslint",
+  "name": "eslint-1",
   "version": "1.0.0",
-  "description": "linting",
-  "main": "es/headless_api_fetch.js",
-  "dependencies": {
-    "eslint": "^5.6.1"
-  },
-  "devDependencies": {},
+  "description": "A",
+  "main": ".eslintrc.js",
   "scripts": {
-    "test": "test"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "repository": {
-    "type": "git",
-    "url": "-"
-  },
-  "keywords": [
-    "-"
-  ],
-  "author": "AS",
-  "license": "UNLICENSED"
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^5.6.1",
+    "eslint-config-standard": "^12.0.0",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-node": "^7.0.1",
+    "eslint-plugin-promise": "^4.0.1",
+    "eslint-plugin-standard": "^4.0.0"
+  }
 }

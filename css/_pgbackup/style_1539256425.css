@@ -35,7 +35,6 @@ a {
         grid-area: navigation;
         background-color: #ffffff;
         display: flex;
-        flex-direction: column;
     }
 
     .makecontent {
@@ -98,12 +97,12 @@ a {
 
 .nav-link {
     display: block;
-    padding: 15px 1rem 0.5rem;
+    padding: 0 1rem 0.5rem;
     color: rgb(240, 152, 25);
+    text-decoration: none;
     font-weight: 700;
     text-shadow: 1px;
     margin: 0;
-    text-transform: uppercase;
 }
 
 footer {
@@ -289,9 +288,6 @@ footer {
     .navlogo {
         clear: both;
         display: block;
-        padding: 6px;
-
-        /* margin-left: 0px */
     }
 }
 
@@ -299,7 +295,6 @@ footer {
     float: left;
 
     /* margin-left: 35px */
-    padding: 1em;
 }
 
 .card-text {
