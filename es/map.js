@@ -9,38 +9,38 @@ function initMap() {
 		gestureHandling: "cooperative",
 
 		styles: [
-			{elementType: "geometry", stylers: [{color: "#242f3e"}]},
-			{elementType: "labels.text.stroke", stylers: [{color: "#242f3e"}]},
-			{elementType: "labels.text.fill", stylers: [{color: "#746855"}]},
+			{elementType: "geometry", stylers: [{color: "#F77723"}]},
+			{elementType: "labels.text.stroke", stylers: [{color: "#aaaaaa"}]},
+			{elementType: "labels.text.fill", stylers: [{color: "#444444"}]},
 			{
 				featureType: "administrative.locality",
 				elementType: "labels.text.fill",
-				stylers: [{color: "#d59563"}]
+				stylers: [{color: "#444444"}]
 			},
 			{
 				featureType: "poi",
 				elementType: "labels.text.fill",
-				stylers: [{color: "#d59563"}]
+				stylers: [{color: "#444444"}]
 			},
 			{
 				featureType: "poi.park",
 				elementType: "geometry",
-				stylers: [{color: "#263c3f"}]
+				stylers: [{color: "#F77723"}]
 			},
 			{
 				featureType: "poi.park",
 				elementType: "labels.text.fill",
-				stylers: [{color: "#6b9a76"}]
+				stylers: [{color: "#aaaaaa"}]
 			},
 			{
 				featureType: "road",
 				elementType: "geometry",
-				stylers: [{color: "#38414e"}]
+				stylers: [{color: "#eeeeee"}]
 			},
 			{
 				featureType: "road",
 				elementType: "geometry.stroke",
-				stylers: [{color: "#212a37"}]
+				stylers: [{color: "#aaaaaa"}]
 			},
 			{
 				featureType: "road",
@@ -50,12 +50,12 @@ function initMap() {
 			{
 				featureType: "road.highway",
 				elementType: "geometry",
-				stylers: [{color: "#746855"}]
+				stylers: [{color: "#aaaaaa"}]
 			},
 			{
 				featureType: "road.highway",
 				elementType: "geometry.stroke",
-				stylers: [{color: "#1f2835"}]
+				stylers: [{color: "#666666"}]
 			},
 			{
 				featureType: "road.highway",
@@ -65,7 +65,7 @@ function initMap() {
 			{
 				featureType: "transit",
 				elementType: "geometry",
-				stylers: [{color: "#2f3948"}]
+				stylers: [{color: "#F77723"}]
 			},
 			{
 				featureType: "transit.station",
@@ -75,7 +75,7 @@ function initMap() {
 			{
 				featureType: "water",
 				elementType: "geometry",
-				stylers: [{color: "#17263c"}]
+				stylers: [{color: "#F77755"}]
 			},
 			{
 				featureType: "water",
