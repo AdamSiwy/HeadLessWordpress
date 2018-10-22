@@ -317,10 +317,3 @@ footer {
 .button-filter img {
     height: 20px;
 }
-
-.legende {
-    display: flex;
-    position: relative;
-    margin: 10px;
-    float: right;
-}

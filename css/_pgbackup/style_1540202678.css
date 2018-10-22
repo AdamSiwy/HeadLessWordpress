@@ -320,7 +320,6 @@ footer {
 
 .legende {
     display: flex;
-    position: relative;
-    margin: 10px;
-    float: right;
+    justify-content: flex-end;
+    position: fixed;
 }

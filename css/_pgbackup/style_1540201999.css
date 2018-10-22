@@ -305,22 +305,3 @@ footer {
 .card-text {
     margin-right: 4em;
 }
-
-.button-filter {
-    cursor: pointer;
-    text-transform: uppercase;
-    display: inline-flex;
-    align-items: center;
-    padding: 0.5em;
-}
-
-.button-filter img {
-    height: 20px;
-}
-
-.legende {
-    display: flex;
-    position: relative;
-    margin: 10px;
-    float: right;
-}

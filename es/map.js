@@ -1,6 +1,8 @@
 var map;
 let infowindow;
 
+
+
 function initMap() {
 	map = new google.maps.Map(document.getElementById("mapdiv"), {
 		center: {lat: 50.112429140916895, lng: 8.658040574234301},
@@ -98,6 +100,18 @@ function initMap() {
 }
 
 
+let categoryMarker = (element) => {
+	let eventMarker = `assets/eventicon.png`;
+	let newsMarker = `assets/topnewsicon.png`;
+	let jobMarker = `assets/jobicon.png`;
+	if(element!=null) {
+		return eventMarker;
+	}
+	else {
+		return newsMarker;
+	}
+}
+
 let geopins = fetch( "https://make-rhein-main.de/wp-json/wp/v2/posts/?per_page=20")
 	.then( json => json.json() )
 	.then(posts => posts.forEach(item =>{
@@ -108,7 +122,7 @@ let geopins = fetch( "https://make-rhein-main.de/wp-json/wp/v2/posts/?per_page=2
 				position: {lat: parseFloat( latlong[0] ), lng: parseFloat( latlong[1] )},
 				map: map,
 				title: item.title.rendered,
-				icon: "https://png.icons8.com/color/50/000000/marker.png",
+				icon: categoryMarker(item.acf.eventdatum),
 				animation: google.maps.Animation.DROP,
 			});
 
