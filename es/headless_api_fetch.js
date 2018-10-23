@@ -35,8 +35,9 @@ let getTeaserSrc = async gid => {
 let getTeaserImage = (gid) => {
 	return fetch(url + "/wp/v2/media/" + gid)
 		.then(res => res.json())
-		.then(res => res.media_details.sizes.medium.source_url);
-};
+		.then(res => res.media_details.sizes.medium.source_url)
+		.catch(error => console.error('Error:', error));
+	};
 
 const getListPosts = total => {
 	fetch(url + "/wp/v2/posts/?per_page=" + total)

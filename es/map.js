@@ -1,7 +1,46 @@
 var map;
 let infowindow;
 
+let eventMarker = `assets/eventicon.png`;
+let newsMarker = `assets/topnewsicon.png`;
+let jobMarker = `assets/jobicon.png`;
 
+function togglefilter(filter,Marker) {
+	const blankicon = `<img src="assets/iconfilter.png" alt="Filter Deaktiviert" />`;
+	if(filter.lastElementChild.innerHTML.includes("Deaktiviert")) {
+		filter.lastElementChild.innerHTML =  `<img src="${Marker}" alt="Filter Aktiv" />`;
+		markerfilter.forEach(mark => {
+			if (mark.icon==Marker) {
+				mark.setVisible(true);
+			}
+			
+		});
+	}
+	else {
+		filter.lastElementChild.innerHTML = blankicon;
+		markerfilter.forEach(mark => {
+			if (mark.icon==Marker) {
+				mark.setVisible(false);
+			}
+		});
+	}
+}
+
+let filterlist = [0,1,2];
+
+document.getElementsByClassName("button-filter")[filterlist[0]].addEventListener("click", function() { 
+	togglefilter(this,newsMarker);
+
+});
+
+document.getElementsByClassName("button-filter")[filterlist[1]].addEventListener("click", function() { 
+	togglefilter(this,eventMarker);
+
+});
+
+document.getElementsByClassName("button-filter")[filterlist[2]].addEventListener("click", function() { 
+	togglefilter(this,jobMarker);
+});
 
 function initMap() {
 	map = new google.maps.Map(document.getElementById("mapdiv"), {
@@ -99,11 +138,8 @@ function initMap() {
 
 }
 
-
 let categoryMarker = (element) => {
-	let eventMarker = `assets/eventicon.png`;
-	let newsMarker = `assets/topnewsicon.png`;
-	let jobMarker = `assets/jobicon.png`;
+
 	if(element!=null) {
 		return eventMarker;
 	}
@@ -112,58 +148,64 @@ let categoryMarker = (element) => {
 	}
 }
 
+let shadow = (item,trigger) => {
+	let triggervar;
+	if(trigger=="show") {
+		triggervar = ["#efefef","1px 0px 80px"];
+	}
+	else {
+		triggervar = ["white","none"];
+	}
+	if(document.getElementById(item)) {
+		document.getElementById(item).parentElement.style.backgroundColor = triggervar[0];
+		document.getElementById(item).parentElement.style.boxShadow = triggervar[1];
+			
+	}
+};
+
+
+let markers = (element) => {
+	let latlong = element.acf.gpstolocation.split(",");
+	
+
+	let marker = new google.maps.Marker({
+		position: {lat: parseFloat( latlong[0] ), lng: parseFloat( latlong[1] )},
+		map: map,
+		title: element.title.rendered,
+		icon: categoryMarker(element.acf.eventdatum),
+		animation: google.maps.Animation.DROP,
+	});
+
+	markerfilter.push(marker);
+	
+	marker.addListener("mouseover", function() { shadow(element.featured_media,"show"); } );
+	marker.addListener("mouseout", function() { shadow(element.featured_media,"hide");	} );
+
+	infowindow = new google.maps.InfoWindow({
+		content: "<div>" + element.title.rendered + "</div>"
+	});
+
+	marker.addListener("click", function() {
+		let showDatum =  (element) => {
+			// console.log(element);
+			if (element!=undefined) {
+				let htmlEventInfo = "<p>Event am: "+ element +"</p>";
+				return htmlEventInfo;
+			}
+			else return "";
+		};
+
+		let infoDatum = showDatum(element.acf.eventdatum);
+		infowindow.setContent("<div style=\"max-width:200px; height:200px;\"><div><h3>" + element.title.rendered + "<h3></div>" + infoDatum + "<a href=\"" + element.link + "\" class=\"btn-primary\">Artikel lesen</a></div>");
+		infowindow.open(map, marker);
+	});
+}
+
+let markerfilter =[];
 let geopins = fetch( "https://make-rhein-main.de/wp-json/wp/v2/posts/?per_page=20")
 	.then( json => json.json() )
 	.then(posts => posts.forEach(item =>{
 		if(item.acf.gpstolocation!= null) {
-			let latlong = item.acf.gpstolocation.split(",");
-
-			let marker = new google.maps.Marker({
-				position: {lat: parseFloat( latlong[0] ), lng: parseFloat( latlong[1] )},
-				map: map,
-				title: item.title.rendered,
-				icon: categoryMarker(item.acf.eventdatum),
-				animation: google.maps.Animation.DROP,
-			});
-
-			infowindow = new google.maps.InfoWindow({
-				content: "<div>" + item.title.rendered + "</div>"
-			});
-
-			marker.addListener("click", function() {
-				//  alert(item.title.rendered);
-
-				let showDatum =  (element) => {
-					// console.log(element);
-					if (element!=undefined) {
-						let htmlEventInfo = "<p>Event am: "+ element +"</p>";
-						return htmlEventInfo;
-					}
-					else return "";
-				};
-
-				let infoDatum = showDatum(item.acf.eventdatum);
-				infowindow.setContent("<div style=\"max-width:200px; height:200px;\"><div><h3>" + item.title.rendered + "<h3></div>" + infoDatum + "<a href=\"" + item.link + "\" class=\"btn-primary\">Artikel lesen</a></div>");
-				infowindow.open(map, marker);
-
-              
-			});
-
-			marker.addListener("mouseover", function() {
-				if(document.getElementById(item.featured_media)) {
-					document.getElementById(item.featured_media).parentElement.style.backgroundColor = "#efefef";
-					document.getElementById(item.featured_media).parentElement.style.boxShadow = "1px 0px 80px";
-                  
-				}
-			});
-
-			marker.addListener("mouseout", function() {
-				if(document.getElementById(item.featured_media)) {
-					document.getElementById(item.featured_media).parentElement.style.backgroundColor = "white";
-					document.getElementById(item.featured_media).parentElement.style.boxShadow = "none";
-				}
-			});
-
-
+			markers(item);
 		}
 	}));
