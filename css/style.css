@@ -324,3 +324,19 @@ footer {
     margin: 10px;
     float: right;
 }
+
+#userlocation {
+    display: inline-flex;
+}
+
+@media (max-width:639px) {
+    #userlocation {
+        display: inline-flex;
+    }
+}
+
+@media (min-width:1200px) {
+    #userlocation {
+        display: none;
+    }
+}
