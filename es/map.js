@@ -26,7 +26,7 @@ function togglefilter(filter,Marker) {
 	}
 }
 
-let filterlist = [0,1,2];
+let filterlist = [0,1,2,3];
 
 document.getElementsByClassName("button-filter")[filterlist[0]].addEventListener("click", function() { 
 	togglefilter(this,newsMarker);
@@ -40,6 +40,12 @@ document.getElementsByClassName("button-filter")[filterlist[1]].addEventListener
 
 document.getElementsByClassName("button-filter")[filterlist[2]].addEventListener("click", function() { 
 	togglefilter(this,jobMarker);
+});
+
+document.getElementsByClassName("button-filter")[filterlist[3]].addEventListener("click", function() { 
+	// togglefilter(this,jobMarker);
+	userlocation();
+
 });
 
 function initMap() {
@@ -209,3 +215,38 @@ let geopins = fetch( "https://make-rhein-main.de/wp-json/wp/v2/posts/?per_page=2
 			markers(item);
 		}
 	}));
+
+	// GeoPosition des Benutzers
+
+let userlocation = () => {	
+	navigator.geolocation.getCurrentPosition(
+		function(position){
+			// console.log(position.coords.latitude);
+			// console.log(position.coords.longitude);
+			// console.log(position.coords.altitude+'m');
+			// console.log(position.coords.accuracy+'m');
+
+			if (position.coords.accuracy<1000) {
+				let marker = new google.maps.Marker({
+					position: {lat: parseFloat( position.coords.latitude ), lng: parseFloat( position.coords.longitude )},
+					map: map,
+					title: "Standort",
+					icon: "assets/locationuser.png",
+					animation: google.maps.Animation.DROP,
+				});
+			}
+			else {
+				console.log("Standort leider zu ungenau > 1.000m ...")
+			}
+
+		},
+		function(){
+		// wenn Positionsbestimmung einen Fehler erzeugt hat (z.B. weil Sie vom User ablehnt wurde).
+		console.log('Die Position konnte nicht ermittelt werden');
+		}
+
+
+		)
+
+
+}
